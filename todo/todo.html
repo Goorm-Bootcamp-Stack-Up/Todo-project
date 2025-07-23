@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title-container">
+        <img src="#" alt="todo-logo" />
+        <h1>TODO</h1>
+      </div>
+    </header>
+    <section class="controls">
+      <div class="filter-box">
+        <input type="checkbox" value="b-start" id="b-start" />
+        <label for="b-start">시작전</label>
+
+        <input type="checkbox" value="progress" id="progress" />
+        <label for="progress">진행중</label>
+
+        <input type="checkbox" value="complete" id="complete" />
+        <label for="complete">완료</label>
+      </div>
+
+      <div class="form-box">
+        <button class="sort-button">정렬</button>
+        <button type="submit">추가</button>
+        <div id="input-area"></div>
+      </div>
+    </section>
+    <main>
+      <ul id="todo-list">
+      <li class="empty-message">할 일이 없습니다</li>
+      </ul>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
