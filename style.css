@@ -1,0 +1,27 @@
+header {
+    background-color: #cac6c6;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /*이미지와 텍스트 사이*/
+}
+
+.title-container img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.title-container h1 {
+    font-size: 30px;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
