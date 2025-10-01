@@ -1,0 +1,82 @@
+header {
+    background-color: #cac6c6;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /*이미지와 텍스트 사이*/
+}
+
+.title-container img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 7px;
+}
+
+.title-container h1 {
+    font-size: 30px;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* section 스타일 */
+    .controls {
+      display: flex;
+      padding: 60px 40px 0 40px;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      align-items: flex-end;
+    }
+    .controls > div {
+      display: flex;
+      gap: 0 10px;
+      align-items: flex-end;
+    }
+
+    .filter-box label {
+      display: flex;
+      align-items: center;
+      gap: 5px; /* checkbox와 텍스트 사이 간격 */
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .form-box button {
+      border: none;
+      border-radius: 5px;
+      width: 120px;
+      height: 35px;
+      background-color: #cac6c6;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid black;
+      }
+    }
+
+    .filter-box input[type="checkbox"] {
+      appearance: none; /* 기본 스타일 제거 */
+      width: 18px;
+      height: 18px;
+      border: 1px solid #999;
+      border-radius: 3px;
+      background-color: #cac6c6;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .filter-box input[type="checkbox"]:checked {
+      background-color: black;
+      border-color: #666;
+    }
