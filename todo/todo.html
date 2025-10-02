@@ -9,7 +9,7 @@
   <body>
     <header>
       <div class="title-container">
-        <img src="/goorm logo.png" alt="todo-logo" />
+        <img src="./goorm logo.png" alt="todo-logo" />
         <h1>TODO</h1>
       </div>
     </header>
@@ -31,8 +31,7 @@
 
       <div class="form-box">
         <button>정렬</button>
-        <button type="submit">추가</button>
-        <div id="input-area"></div>
+        <button id="add-memo-button">메모 추가</button>
       </div>
     </section>
     <main>
@@ -40,6 +39,18 @@
         <li class="empty-message">할 일이 없습니다</li>
       </ul>
     </main>
+
+    <!-- Modal Structure -->
+    <div id="memo-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-content">
+        <h2>새 메모 추가</h2>
+        <textarea id="memo-text" placeholder="메모 내용을 입력하세요..."></textarea>
+        <div class="modal-actions">
+          <button id="save-memo-button">저장</button>
+          <button id="cancel-memo-button">취소</button>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
