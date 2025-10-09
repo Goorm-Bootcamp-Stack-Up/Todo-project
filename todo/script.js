@@ -6,9 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const memoText = document.getElementById('memo-text');
     const saveMemoButton = document.getElementById('save-memo-button');
     const cancelMemoButton = document.getElementById('cancel-memo-button');
+    const filterCheckboxes = document.querySelectorAll('.filter-box input[type="checkbox"]');
 
     let todos = JSON.parse(localStorage.getItem('todos')) || [];
     let editIndex = null;
+    let activeFilters = [];
 
     const saveTodos = () => {
         localStorage.setItem('todos', JSON.stringify(todos));
@@ -23,28 +25,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    filterCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            activeFilters = Array.from(filterCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+            renderTodos();
+        });
+    });
+
     const renderTodos = () => {
         todoList.innerHTML = '';
-        if (todos.length === 0) {
+        // 필터링된 목록 생성
+        let filteredTodos = todos;
+        if (activeFilters.length > 0) {
+            filteredTodos = todos.filter(todo => activeFilters.includes(todo.status));
+        }
+
+        if (filteredTodos.length === 0) {
             todoList.innerHTML = '<li class="empty-message">할 일이 없습니다</li>';
             return;
         }
-        todos.forEach((todo, index) => {
+        filteredTodos.forEach((todo) => {
             const li = document.createElement('li');
             li.classList.add('todo-item');
-            li.dataset.index = index;
+            li.dataset.index = todos.indexOf(todo); // 원본 todos의 인덱스 사용
 
             const isCompleted = todo.status === 'complete';
 
             li.innerHTML = `
-                <input type="checkbox" class="todo-checkbox" ${isCompleted ? 'checked' : ''}>
-                <span class="todo-text">${todo.text}</span>
-                <span class="status-pill status-${todo.status}">${getStatusText(todo.status)}</span>
-                <div class="actions">
-                    <button class="edit">✎</button>
-                    <button class="delete">✖</button>
-                </div>
-            `;
+            <input type="checkbox" class="todo-checkbox" ${isCompleted ? 'checked' : ''}>
+            <span class="todo-text">${todo.text}</span>
+            <span class="status-pill status-${todo.status}">${getStatusText(todo.status)}</span>
+            <div class="actions">
+                <button class="edit">✎</button>
+                <button class="delete">✖</button>
+            </div>
+        `;
             todoList.appendChild(li);
         });
     };
@@ -102,10 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Re-render will happen after saving
         } else if (e.target.classList.contains('todo-checkbox')) {
             const currentStatus = todos[index].status;
-            if (currentStatus === 'complete') {
+            if (currentStatus === 'b-start') {
                 todos[index].status = 'progress';
-            } else {
+            } else if (currentStatus === 'progress') {
                 todos[index].status = 'complete';
+            } else if (currentStatus === 'complete') {
+                todos[index].status = 'b-start';
             }
         }
         saveTodos();
