@@ -30,7 +30,7 @@
       </div>
 
       <div class="form-box">
-        <button>정렬</button>
+        <button id="sort-button">정렬</button>
         <button id="add-memo-button">메모 추가</button>
       </div>
     </section>
@@ -40,14 +40,45 @@
       </ul>
     </main>
 
-    <!-- Modal Structure -->
-    <div id="memo-modal" class="modal-overlay" style="display: none;">
+    <!-- Memo Modal -->
+    <div id="memo-modal" class="modal-overlay" style="display: none">
       <div class="modal-content">
         <h2>새 메모 추가</h2>
-        <textarea id="memo-text" placeholder="메모 내용을 입력하세요..."></textarea>
+        <textarea
+          id="memo-text"
+          placeholder="메모 내용을 입력하세요..."
+        ></textarea>
+        <div class="priority-box">
+          <label>중요도:</label>
+          <select id="memo-priority">
+            <option value="low">낮음</option>
+            <option value="medium" selected>보통</option>
+            <option value="high">높음</option>
+          </select>
+        </div>
         <div class="modal-actions">
           <button id="save-memo-button">저장</button>
           <button id="cancel-memo-button">취소</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sort Modal -->
+    <div id="sort-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <h2>정렬 방식 선택</h2>
+        <div class="sort-options">
+          <button class="sort-option" data-sort="date-new">최신순</button>
+          <button class="sort-option" data-sort="date-old">오래된순</button>
+          <button class="sort-option" data-sort="priority-high">
+            중요도 높은순
+          </button>
+          <button class="sort-option" data-sort="priority-low">
+            중요도 낮은순
+          </button>
+        </div>
+        <div class="modal-actions">
+          <button id="cancel-sort-button">취소</button>
         </div>
       </div>
     </div>
